@@ -4,10 +4,10 @@ const router = Router();
 
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
     res.send({
-      message: ' byr byr',
+      message: ' bye world',
     });
   });
 
-  console.log('hi')
+  console.log('hello world')
 
   export default router;

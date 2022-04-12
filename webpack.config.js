@@ -1,6 +1,9 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const WebpackShellPluginNext = require('webpack-shell-plugin-next');
+let dotenv = require("dotenv").config({ path: __dirname + "/.env" });
+let webpack = require('webpack');
+
 
 module.exports = {
     // entry point of the application
@@ -35,8 +38,12 @@ module.exports = {
     },
     externals: [ nodeExternals() ],
     plugins: [
+        new webpack.DefinePlugin({
+            "process.env.DOTENV": JSON.stringify(dotenv.parsed),
+          }),
         new WebpackShellPluginNext({
             onBuildEnd: ['npm run run:dev'],
         })
+        
     ]
 }
