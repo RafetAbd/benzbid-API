@@ -1,8 +1,10 @@
 import express, { Request, Response, NextFunction, Router} from 'express';
 
-const router = Router();
+// const router = Router();
 
-router.get('/', (req: Request, res: Response, next: NextFunction) => {
+const app = express()
+
+app.get('/', (req: Request, res: Response, next: NextFunction) => {
     res.send({
       message: ' bye world',
     });
@@ -10,4 +12,4 @@ router.get('/', (req: Request, res: Response, next: NextFunction) => {
 
   console.log('hello world')
 
-  export default router;
+  export default app;
