@@ -1,4 +1,4 @@
-import * as sequelize from "sequelize";
+import { Sequelize } from "sequelize";
 import * as pkg from '../../package.json';
 
 const databaseName:string = pkg.name + (process.env.NODE_ENV === 'test' ? '-test' : '')
@@ -34,7 +34,7 @@ if ( process.env.DATABASE_URL ) {
     };
 }
 
-const db: any = new sequelize.Sequelize(
+const db = new Sequelize(
     process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`, config);
 
 export default db;
