@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 
 const SALT_ROUNDS = 5;
 
+// We need to declare an interface for our model that is basically what our class would be
 interface UserModel extends Model {
     id?: number;
     email: string;
@@ -17,15 +18,17 @@ interface UserModel extends Model {
     generateToken(): string;
 }
 
+// Need to declare the static model so `findOne` etc. use correct types.
 type UserModelStatic = typeof Model & {
     new (values?: object, options?: BuildOptions): UserModel;
     authenticate(email: string, password: string): Promise<string>;
     findByToken(token: string): Promise<UserModel | null>;
   }
 
+// TS can't derive a proper class definition from a `.define` call, therefor we need to cast here.
 const User = <UserModelStatic>db.define("user", {
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
