@@ -9,7 +9,8 @@ interface CarModel extends Model {
     description: string;
     price: number;
     status: string;
-    location: string;
+    coordinateLat: number;
+    coordinateLng: number;
     endTimeAndDate: string;
     s3id: string;
 }
@@ -46,16 +47,18 @@ const Car = <CarModelStatic>db.define('car', {
         allowNull: false
     },
     price: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL,
         allowNull: false
     },
     status: {
         type: DataTypes.STRING,
         defaultValue: 'Active'
     },
-    location: {
-        type: DataTypes.STRING,
-        allowNull: false
+    coordinateLat: {
+        type: DataTypes.DECIMAL,
+    },
+    coordinateLng: {
+        type: DataTypes.DECIMAL,
     },
     endTimeAndDate: {
         type: DataTypes.STRING,
