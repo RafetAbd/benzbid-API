@@ -1,5 +1,5 @@
 import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
-import { UserModel } from "./User";
+import { UserModel, User } from "./User";
 import db from "../db";
 
 interface MessageModel extends Model {
@@ -21,10 +21,13 @@ const Message = <MessageModelStatic>db.define("message", {
     content: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    defaultScopes: {
-        type: DataTypes.STRING,
-        allowNull: false
+    }
+}
+, {
+    defaultScope: {
+        include: [
+            { model: User }
+        ]
     }
 });
 

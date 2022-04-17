@@ -5,14 +5,13 @@ interface CarModel extends Model {
     id?: number;
     model: string;
     year: number;
-    imageUrl: string;
     description: string;
     price: number;
     status: string;
     coordinateLat: number;
     coordinateLng: number;
     endTimeAndDate: string;
-    s3id: string;
+    awsUrl: string;
 }
 
 type CarModelStatic = typeof Model & {
@@ -38,21 +37,17 @@ const Car = <CarModelStatic>db.define('car', {
             max: 2023,
         }
     },
-    imageUrl: {
-        type: DataTypes.STRING,
-        defaultValue: '/mercedes default.jpg'
-    },
     description: {
         type: DataTypes.STRING,
         allowNull: false
     },
     price: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     status: {
         type: DataTypes.STRING,
-        defaultValue: 'Active'
+        defaultValue: 'active'
     },
     coordinateLat: {
         type: DataTypes.DECIMAL,
@@ -64,9 +59,9 @@ const Car = <CarModelStatic>db.define('car', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    s3id: {
+    awsUrl: {
         type: DataTypes.STRING,
-        allowNull: false
+        defaultValue: '/mercedes default.jpg'
     }
 });
 

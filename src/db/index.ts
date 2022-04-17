@@ -17,4 +17,7 @@ Bid.belongsTo(Car);
 Car.hasMany(Message);
 Message.belongsTo(Car);
 
+User.hasMany(Message);
+Message.belongsTo(User);
+
 export { db, User, Bid, Message, Car };
