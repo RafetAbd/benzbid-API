@@ -58,7 +58,7 @@ const User = <UserModelStatic>db.define("user", {
     }
 });
 
-export default User
+export { User, UserModel };
 
 // ** instanceMethods **
 

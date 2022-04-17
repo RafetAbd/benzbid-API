@@ -3,7 +3,7 @@ import { User } from '../db';
 const router = Router();
 export default router;
 
-// recieved a email, passowrd then verify and response with a token.
+// recieve a email, passowrd then verify and response with a token.
 router.post('/login', async (req: Request, res: Response, next: NextFunction) => {
     try {
         res.send({ token: await User.authenticate(req.body.email, req.body.password) });
@@ -12,7 +12,7 @@ router.post('/login', async (req: Request, res: Response, next: NextFunction) =>
     }
 });
 
-// recieved user info, create a new user and response with a token.
+// recieve user info, create a new user and response with a token.
 router.post('/signup', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const user = await User.create(req.body);
@@ -26,7 +26,7 @@ router.post('/signup', async (req: Request, res: Response, next: NextFunction) =
     }
 })
 
-// recieved a token, verify and response with a user.
+// recieve a token, verify and response with a user.
 router.get('/me', async (req: Request, res: Response, next: NextFunction) => {
     try {
         res.send(await User.findByToken(req.headers.authorization as string));
