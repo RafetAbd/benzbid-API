@@ -1,5 +1,5 @@
 
-import { Sequelize, BuildOptions, Model, DataTypes , CreateDatabaseOptions, InferAttributes, InferCreationAttributes } from "sequelize";
+import { BuildOptions, Model, DataTypes } from "sequelize";
 import db from "../db";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
@@ -101,13 +101,11 @@ User.authenticate = async function ( email: string, password: string ) {
   // ** hooks **
 
   const hashPassword = async (user: UserModel) => {
-    //in case the password has been changed, we want to encrypt it with bcrypt
+    //in case the password has been created or changed, we want to encrypt it with bcrypt
     if (user.changed('password')) {
       user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
     }
   }
-
-//   type users = typeof User[]
   
   User.beforeCreate(hashPassword)
   User.beforeUpdate(hashPassword)

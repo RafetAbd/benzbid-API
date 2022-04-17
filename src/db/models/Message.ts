@@ -1,11 +1,11 @@
-import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
+import { Model, DataTypes, BuildOptions } from "sequelize";
 import { UserModel, User } from "./User";
 import db from "../db";
 
 interface MessageModel extends Model {
     id?: number;
     content: string;
-    defaultScopes: { include: { model: UserModel }[] };
+    // defaultScopes: { include: { model: UserModel }[] };
 }
 
 type MessageModelStatic = typeof Model & {

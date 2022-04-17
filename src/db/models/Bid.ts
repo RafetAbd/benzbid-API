@@ -1,4 +1,4 @@
-import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
+import { Model, DataTypes, BuildOptions } from "sequelize";
 import db from "../db"
 
 interface BidModel extends Model {
