@@ -70,5 +70,15 @@ export const updateCar: RequestHandler<{id: string}> = async(req, res, next) => 
 };
 
 // @route   DELETE api/cars/:id, delete a car post
-export const deleteCar: RequestHandler<{id: string}> = (req, res, next) => {
+export const deleteCar: RequestHandler<{id: string}> = async(req, res, next) => {
+    try {
+        const car = await Car.findByPk(req.params.id);
+        if (!car) {
+            return res.status(404).send('Car not found');
+        }
+        await car.destroy();
+        res.sendStatus(204);
+    } catch (err) {
+        next(err);
+    }
 };
