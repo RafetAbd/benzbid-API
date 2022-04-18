@@ -1,6 +1,5 @@
 import { RequestHandler } from "express";
-import  Car  from "../../db/models/Car";
-import { User, Message } from "../../db";
+import { User, Message, Car } from "../../db";
 import axios from "axios";
 
 type googleGeoResponse = {
@@ -57,7 +56,17 @@ export const getOneCar: RequestHandler<{id: string}> = async(req, res, next) => 
 };
 
 // @route   PUT api/cars/:id, update a car post
-export const updateCar: RequestHandler<{id: string}> = (req, res, next) => {
+export const updateCar: RequestHandler<{id: string}> = async(req, res, next) => {
+    try {
+        const car = await Car.findByPk(req.params.id);
+        if (!car) {
+            return res.status(404).send('Car not found');
+        }
+        const updatedCar = await car.update(req.body);   
+        res.send(updatedCar);
+    } catch (err) {
+        next(err);
+    }
 };
 
 // @route   DELETE api/cars/:id, delete a car post
