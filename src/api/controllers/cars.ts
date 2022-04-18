@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import  Car  from "../../db/models/Car";
-import { User } from "../../db/models/User";
+import { User, Message } from "../../db";
 import axios from "axios";
 
 type googleGeoResponse = {
@@ -8,6 +8,7 @@ type googleGeoResponse = {
     status: 'OK' | 'ZERO_RESULTS';
 }
 
+// @route   GET api/cars/, create a new car post
 export const createCar: RequestHandler = async(req, res, next) => {
     try {
         const address = req.body.address;
@@ -25,14 +26,40 @@ export const createCar: RequestHandler = async(req, res, next) => {
     }
 };
 
-export const getAllCars: RequestHandler = (req, res, next) => {
+// @route   GET api/cars, get all cars list
+export const getAllCars: RequestHandler = async(req, res, next) => {
+    try {
+        const cars = await Car.findAll();
+        res.send(cars);
+    } catch (err) {
+        next(err);
+    }
 };
 
-export const getOneCar: RequestHandler<{id: string}> = (req, res, next) => {
+// @route   GET api/cars/:id, get a car post
+export const getOneCar: RequestHandler<{id: string}> = async(req, res, next) => {
+    try {
+        const car = await Car.findByPk(req.params.id, {
+            include: [{
+                model: User,
+                as: 'user',
+                attributes: ['id', 'email', 'name', 'imageUrl']
+            },
+            {
+                model: Message,
+                as: 'messages',
+            }]
+        });
+        res.send(car);
+    } catch (err) {
+        next(err);
+    }
 };
 
+// @route   PUT api/cars/:id, update a car post
 export const updateCar: RequestHandler<{id: string}> = (req, res, next) => {
 };
 
+// @route   DELETE api/cars/:id, delete a car post
 export const deleteCar: RequestHandler<{id: string}> = (req, res, next) => {
 };
