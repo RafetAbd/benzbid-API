@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { User, Message, Car } from "../../db";
+import { User, Message, Car, Bid } from "../../db";
 import axios from "axios";
 
 type googleGeoResponse = {
@@ -7,7 +7,7 @@ type googleGeoResponse = {
     status: 'OK' | 'ZERO_RESULTS';
 }
 
-// @route   GET api/cars/, create a new car post
+// @route   POST api/cars/, create a new car post
 export const createCar: RequestHandler = async(req, res, next) => {
     try {
         const address = req.body.address;
@@ -47,6 +47,15 @@ export const getOneCar: RequestHandler<{id: string}> = async(req, res, next) => 
             {
                 model: Message,
                 as: 'messages',
+            },
+            {
+                model: Bid,
+                as: 'bids',
+                include: [{
+                    model: User,
+                    as: 'user',
+                    attributes: ['id', 'email', 'name']
+                }]
             }]
         });
         res.send(car);
