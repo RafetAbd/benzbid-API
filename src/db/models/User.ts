@@ -112,16 +112,3 @@ User.authenticate = async function ( email: string, password: string ) {
   User.beforeBulkCreate((users) => {
       Promise.all(users.map(hashPassword))});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
