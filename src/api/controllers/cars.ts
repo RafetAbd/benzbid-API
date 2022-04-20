@@ -78,6 +78,24 @@ export const updateCar: RequestHandler<{id: string}> = async(req, res, next) => 
     }
 };
 
+
+export const addImageToCar: RequestHandler<{id: string}> = async(req, res, next) => {
+    try {
+        const car = await Car.findByPk(req.params.id);
+        if (!car) {
+            return res.status(404).send('Car not found');
+        }
+        
+        const updatedCar = await car.update({
+            ...req.body,
+            imageUrl: req.body.imageUrl
+        });   
+        res.send(updatedCar);
+    } catch (err) {
+        next(err);
+    }
+};
+
 // @route   DELETE api/cars/:id, delete a car post
 export const deleteCar: RequestHandler<{id: string}> = async(req, res, next) => {
     try {
