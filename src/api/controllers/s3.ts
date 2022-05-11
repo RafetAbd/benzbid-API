@@ -1,4 +1,4 @@
-import aws from 'aws-sdk';
+import AWS from 'aws-sdk';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -7,7 +7,7 @@ const bucketName = "benzbid-cars-images"
 const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 
-const s3 = new aws.S3({
+const s3 = new AWS.S3({
     region: region,
     accessKeyId: accessKeyId,
     secretAccessKey: secretAccessKey,

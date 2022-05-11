@@ -2,11 +2,18 @@ import express, { Request, Response, NextFunction, Router} from 'express';
 import authRouter from './auth';
 import apiRouter from './api';
 import { json } from 'body-parser';
+import  cors  from 'cors';
 
 const app = express()
 
 // body parsing middleware
 app.use(json())
+
+app.use(cors({
+  origin: '*'
+}));
+
+
 
 // auth and api routes
 app.use('/auth', authRouter);
