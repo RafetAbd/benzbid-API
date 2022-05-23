@@ -82,6 +82,7 @@ async function seed() {
             coordinateLat: '33.678615',
             coordinateLng: '-111.974607',
             endTimeAndDate: '2023-06-01T00:00:00.000Z',
+            userId: users[7].id,
             // awsUrl: ''
         }),
         Car.create({
@@ -92,6 +93,7 @@ async function seed() {
             coordinateLat: '33.678615',
             coordinateLng: '-111.974607',
             endTimeAndDate: '2023-06-01T00:00:00.000Z',
+            userId: users[7].id,
             // awsUrl: ''
         }),
         Car.create({
@@ -102,6 +104,7 @@ async function seed() {
             coordinateLat: '33.678615',
             coordinateLng: '-111.974607',
             endTimeAndDate: '2023-06-01T00:00:00.000Z',
+            userId: users[0].id,
             // awsUrl: ''
         }),
         Car.create({
@@ -112,6 +115,7 @@ async function seed() {
             coordinateLat: '33.678615',
             coordinateLng: '-111.974607',
             endTimeAndDate: '2023-06-01T00:00:00.000Z',
+            userId: users[0].id,
             // awsUrl: ''
         }),
         Car.create({
@@ -122,6 +126,7 @@ async function seed() {
             coordinateLat: '33.678615',
             coordinateLng: '-111.974607',
             endTimeAndDate: '2023-06-01T00:00:00.000Z',
+            userId: users[2].id,
             // awsUrl: ''
         })
     ])
