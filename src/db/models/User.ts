@@ -35,7 +35,6 @@ const User = <UserModelStatic>db.define("user", {
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
         validate: {
             isEmail: true
         }
@@ -46,7 +45,7 @@ const User = <UserModelStatic>db.define("user", {
     },
     name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     imageUrl: {
         type: DataTypes.STRING,

@@ -7,6 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": " webpack",
     "run:dev": "npm run build & nodemon dist/bundle.js",
+    "run:dev:logger": "LOGGING=true npm run run:dev",
+    "run:dev:seed": "SEED=true npm run run:dev",
     "build": "webpack --watch"
   },
   "repository": {
